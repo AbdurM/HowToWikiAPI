@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using HowToWikiAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,8 @@ namespace HowToWikiAPI
             services.AddScoped<IHowToItemRepo, SqlHowToItemRepo>();
 
             services.AddDbContext<HowToContext>(opt=> opt.UseSqlServer(Configuration.GetConnectionString("HowToConnection")));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
