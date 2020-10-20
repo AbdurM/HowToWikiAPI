@@ -25,6 +25,15 @@ namespace HowToWikiAPI.Data
             SaveChanges();
         }
 
+        public void Delete(HowToItem howToItem)
+        {
+            if(howToItem is null)
+            {
+                throw new ArgumentNullException(nameof(howToItem));
+            }
+            _context.Remove(howToItem);
+        }
+
         public IEnumerable<HowToItem> GetAllHowToItems()
         {
            return _context.HowToItems.ToList();
@@ -42,7 +51,7 @@ namespace HowToWikiAPI.Data
 
         public void Update(HowToItem item)
         {
-            //Nothing
+            //No action required. DBContext is tracking changes. Don't forget to save the changes though.
         }
     }
 }

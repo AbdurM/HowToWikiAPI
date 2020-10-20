@@ -10,6 +10,11 @@ namespace HowToWikiAPI.Data
             throw new System.NotImplementedException();
         }
 
+        public void Delete(HowToItem item)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<HowToItem> GetAllHowToItems()
         {
             var howToItems = new List<HowToItem>

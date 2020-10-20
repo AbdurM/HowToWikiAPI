@@ -10,6 +10,7 @@ namespace HowToWikiAPI.Data
         HowToItem GetHowToItemById(int id);
         void CreateHowToItem(HowToItem howToItem);
         void Update(HowToItem item);
+        void Delete(HowToItem item);
         
     }
 }

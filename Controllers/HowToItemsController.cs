@@ -99,5 +99,20 @@ namespace HowToWikiAPI.Controllers
             return NoContent();
         }
 
+        //DELETE api/HowToItems/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteHowToItem(int id)
+        {
+            var howToItemFromRepo = _repository.GetHowToItemById(id);
+
+            if(howToItemFromRepo is null)
+             return NotFound();
+
+            _repository.Delete(howToItemFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
     }
 }
