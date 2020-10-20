@@ -13,6 +13,9 @@ public class HowToProfile : Profile
 
         //HowToCreate to HowToItem
         CreateMap<HowToCreateDto, HowToItem>();
+
+        //HowToUpdate to HowToItem
+        CreateMap<HowToUpdateDto, HowToItem>();
     }
 }
 }

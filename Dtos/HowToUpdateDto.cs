@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HowToWikiAPI.Dtos
 {
-    public class HowToCreateDto
+    public class HowToUpdateDto
     {
        [Required]
        [MaxLength(150)]  

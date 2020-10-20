@@ -30,7 +30,7 @@ namespace HowToWikiAPI.Controllers
         }
 
         //GET api/HowToItem/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetHowToItemById")]
         public ActionResult <HowToReadDto> GetHowToItemById(int id)
         {
             var howToItem = _repository.GetHowToItemById(id);
@@ -49,10 +49,29 @@ namespace HowToWikiAPI.Controllers
 
             _repository.CreateHowToItem(howToItem);
 
+            _repository.SaveChanges();
+
             var howToReadDto = _mapper.Map<HowToReadDto>(howToItem);
 
-            return Ok(howToReadDto);
+            return CreatedAtRoute(nameof(GetHowToItemById), new {Id = howToReadDto.Id}, howToReadDto);
         } 
+
+        //PUT api/HowToItem/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateHowToItem(int id, HowToUpdateDto howToUpdateDto)
+        {
+            var howToItemFromRepo = _repository.GetHowToItemById(id);
+
+            if(howToItemFromRepo is null)
+             return NotFound();
+
+            _mapper.Map(howToUpdateDto, howToItemFromRepo);
+
+            _repository.Update(howToItemFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent(); //returning 204
+        }
 
     }
 }

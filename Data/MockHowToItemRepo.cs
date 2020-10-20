@@ -50,5 +50,10 @@ namespace HowToWikiAPI.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void Update(HowToItem item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

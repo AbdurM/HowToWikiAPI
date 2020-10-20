@@ -39,5 +39,10 @@ namespace HowToWikiAPI.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void Update(HowToItem item)
+        {
+            //Nothing
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace HowToWikiAPI.Data
         IEnumerable<HowToItem> GetAllHowToItems();
         HowToItem GetHowToItemById(int id);
         void CreateHowToItem(HowToItem howToItem);
+        void Update(HowToItem item);
         
     }
 }
