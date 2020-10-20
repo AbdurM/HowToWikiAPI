@@ -5,6 +5,11 @@ namespace HowToWikiAPI.Data
 {
     public class MockHowToItemRepo : IHowToItemRepo
     {
+        public void CreateHowToItem(HowToItem howToItem)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<HowToItem> GetAllHowToItems()
         {
             var howToItems = new List<HowToItem>

@@ -2,10 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HowToWikiAPI.Dtos
 {
-    public class HowToReadDto
+    public class HowToCreateDto
     {
-       public int Id { get; set; }
        public string Title { get; set; }
        public string Instructions { get; set; }
+       public string Category { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HowToWikiAPI.Models;
@@ -12,6 +13,18 @@ namespace HowToWikiAPI.Data
         {
             _context = context;
         }
+
+        public void CreateHowToItem(HowToItem howToItem)
+        {
+            if(howToItem == null)
+            {
+                throw new ArgumentNullException(nameof(howToItem));
+            }
+
+            _context.Add(howToItem);
+            SaveChanges();
+        }
+
         public IEnumerable<HowToItem> GetAllHowToItems()
         {
            return _context.HowToItems.ToList();
