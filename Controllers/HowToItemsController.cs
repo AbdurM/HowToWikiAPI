@@ -3,6 +3,7 @@ using AutoMapper;
 using HowToWikiAPI.Data;
 using HowToWikiAPI.Dtos;
 using HowToWikiAPI.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HowToWikiAPI.Controllers
@@ -71,6 +72,31 @@ namespace HowToWikiAPI.Controllers
             _repository.SaveChanges();
 
             return NoContent(); //returning 204
+        }
+
+        //Patch api/HowToItems/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<HowToUpdateDto> patchDoc)
+        {
+             var howToItemFromRepo = _repository.GetHowToItemById(id);
+
+            if(howToItemFromRepo is null)
+             return NotFound();
+
+            HowToUpdateDto howToItemToPatch = _mapper.Map<HowToUpdateDto>(howToItemFromRepo); 
+            patchDoc.ApplyTo(howToItemToPatch, ModelState);
+
+            if(!TryValidateModel(howToItemToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+             _mapper.Map(howToItemToPatch, howToItemFromRepo);
+
+             _repository.Update(howToItemFromRepo);
+             _repository.SaveChanges();
+
+            return NoContent();
         }
 
     }
